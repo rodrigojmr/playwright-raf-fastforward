@@ -1,0 +1,25 @@
+<body>
+  <h1 id="animate">Test</h1>
+
+  <script>
+    const element = document.getElementById('animate');
+    let start;
+    let direction = 1;
+
+    function step(timestamp) {
+      if (start === undefined) {
+        start = timestamp;
+      }
+      const elapsed = timestamp - start;
+
+      const shift = 0.01 * elapsed;
+
+      element.style.transform = `translateY(${shift}px)`;
+      requestAnimationFrame(step);
+    }
+
+    requestAnimationFrame(step);
+    // easier to reproduce if two requests are queued
+    // requestAnimationFrame(step);
+  </script>
+</body>
